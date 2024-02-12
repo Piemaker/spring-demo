@@ -18,4 +18,14 @@ public class HelloWorld {
     public String sayHello(){
         return "Hey there 👋 " + name + " " + middleName  ;
     }
+
+    @GetMapping("/workout")
+    public String getWorkout(){
+        return """
+                1-100 Pushups 🫷🫸
+                2-100 Cruches
+                3-100 Squats
+                4-10 KM Run 🏃‍♂️
+                """;
+    }
 }
