@@ -16,6 +16,6 @@ public class HelloWorld {
 
     @GetMapping("/")
     public String sayHello(){
-        return "Hello " + name + " " + middleName  ;
+        return "Hey there 👋 " + name + " " + middleName  ;
     }
 }
