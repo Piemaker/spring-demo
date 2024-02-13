@@ -4,20 +4,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.MessageFormat;
+
 @RestController
 public class HelloWorld {
 
-    @Value("$(name)")
+    @Value("${name.firstName}")
     private String name;
 
-    @Value("$(name.middleName)")
+    @Value("${name.middleName}")
     private String middleName;
     // expose "/" that return "Hello World"
 
     @GetMapping("/")
     public String sayHello(){
-        return "Hey there 👋 " + name + " " + middleName  ;
-    }
+        return MessageFormat.format("Hello there {0} {1}",name,middleName);}
 
     @GetMapping("/workout")
     public String getWorkout(){
