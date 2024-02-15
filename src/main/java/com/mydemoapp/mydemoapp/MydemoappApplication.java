@@ -6,8 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // app will break when files are moved to other folder giving this error
-// Parameter 0 of constructor in com.mydemoapp.mydemoapp.rest.DemoController required a bean of type 'com.otherpackage.util.Coach' that could not be found.
-@SpringBootApplication(scanBasePackages = {"com.mydemoapp.mydemoapp", "com.otherpackage.util"})
+// Parameter 0 of constructor in com.mydemoapp.mydemoapp.rest.DemoController required a bean of type 'com.mydemoapp.mydemoapp.common.Coach' that could not be found.
+//@SpringBootApplication(scanBasePackages = {"com.mydemoapp.mydemoapp", "com.otherpackage.util"})
+@SpringBootApplication
 public class MydemoappApplication {
 
     // this bootstraps the entire application
