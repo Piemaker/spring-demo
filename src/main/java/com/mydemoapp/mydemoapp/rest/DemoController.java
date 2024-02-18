@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
     private final Coach myCoach;
     private final Coach theOtherCoach;
-    private final Coach myTennisCoach;
 
 
     //    autowire is optional when 1 constructor is defined
@@ -24,11 +23,12 @@ public class DemoController {
     @Autowired
     public DemoController(@Qualifier("cricketCoach") Coach theCoach,
                           @Qualifier("cricketCoach") Coach theOtherCoach,
-                          @Qualifier("tennisCoach") Coach myTennisCoach) {
-        System.out.println("In constructor: "+ getClass().getSimpleName());
+                          @Qualifier("tennisCoach") Coach myTennisCoach,
+                          @Qualifier("swimCoach") Coach SwimCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
         this.theOtherCoach = theOtherCoach;
-        this.myTennisCoach = myTennisCoach;
+
     }
 //    -----------------------------------------
 
@@ -52,15 +52,24 @@ public class DemoController {
 
 
     @GetMapping("/dailyworkout")
-    public String getDailyWorkout(){
+    public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
 
-//    this will return true because singleton is the default value pointing to the same bean
+    //    this will return true because singleton is the default value pointing to the same bean
     @GetMapping("/check")
-    public String getBeans(){return "Comparing beans: myCoach == theOtherCoach: " + (myCoach == theOtherCoach);}
+    public String getBeans() {
+        return "Comparing beans: myCoach == theOtherCoach: " + (myCoach == theOtherCoach);
+    }
 
     @GetMapping("/lifecycle")
-    public String lifeCycle(){return "Checking lifecycles, check log 👇";}
+    public String lifeCycle() {
+        return "Checking lifecycles, check log 👇";
+    }
+
+    @GetMapping("/swim")
+    public String swim() {
+        return "Checking @Bean";
+    }
 }
 
