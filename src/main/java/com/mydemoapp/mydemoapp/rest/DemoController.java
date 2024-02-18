@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
     private final Coach myCoach;
+    private final Coach theOtherCoach;
 
     //    autowire is optional when 1 constructor is defined
     // currently only 1 coach is defined so autowire imports the CricketCoach
@@ -19,9 +20,11 @@ public class DemoController {
 //    -----------------------------------------
 // constructor injection (recommended)
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                          @Qualifier("cricketCoach") Coach theOtherCoach) {
         System.out.println("In constructor: "+ getClass().getSimpleName());
         myCoach = theCoach;
+        this.theOtherCoach = theOtherCoach;
     }
 //    -----------------------------------------
 
@@ -48,4 +51,10 @@ public class DemoController {
     public String getDailyWorkout(){
         return myCoach.getDailyWorkout();
     }
+
+//    this will return true because singleton is the default value pointing to the same bean
+    @GetMapping("/check")
+    public String getBeans(){return "Comparing beans: myCoach == theOtherCoach: " + (myCoach == theOtherCoach);}
+
 }
+
