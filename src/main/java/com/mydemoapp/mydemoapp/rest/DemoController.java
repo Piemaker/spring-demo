@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
     private final Coach myCoach;
     private final Coach theOtherCoach;
+    private final Coach swimCoach;
 
 
     //    autowire is optional when 1 constructor is defined
@@ -24,11 +25,11 @@ public class DemoController {
     public DemoController(@Qualifier("cricketCoach") Coach theCoach,
                           @Qualifier("cricketCoach") Coach theOtherCoach,
                           @Qualifier("tennisCoach") Coach myTennisCoach,
-                          @Qualifier("swimCoach") Coach SwimCoach) {
+                          @Qualifier("aquatic") Coach swimCoach) {
         System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
         this.theOtherCoach = theOtherCoach;
-
+        this.swimCoach = swimCoach;
     }
 //    -----------------------------------------
 
@@ -69,7 +70,7 @@ public class DemoController {
 
     @GetMapping("/swim")
     public String swim() {
-        return "Checking @Bean";
+        return swimCoach.getDailyWorkout();
     }
 }
 
