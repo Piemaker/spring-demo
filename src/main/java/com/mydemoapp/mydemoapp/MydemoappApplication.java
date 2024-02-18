@@ -2,8 +2,10 @@ package com.mydemoapp.mydemoapp;
 
 // this consists of : @EnableAutoConfiguration (enable spring's auto-config support), @ComponentScan (enables component scanning), @Configuration (able to register extra beans with @beans)
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 // app will break when files are moved to other folder giving this error
 // Parameter 0 of constructor in com.mydemoapp.mydemoapp.rest.DemoController required a bean of type 'com.mydemoapp.mydemoapp.common.Coach' that could not be found.
@@ -16,6 +18,16 @@ public class MydemoappApplication {
     // You can add packages manually by scanBasePackages
     public static void main(String[] args) {
         SpringApplication.run(MydemoappApplication.class, args);
+    }
+
+//    What are the runners in Spring Boot?
+//    Application Runner and Command Line Runner interfaces
+//    lets you to execute the code after the Spring Boot application is started.
+    @Bean
+    public CommandLineRunner commandLineRunner (String[] args){
+        return runner ->{
+            System.out.println("Hello Worlds");
+        };
     }
 
 }
