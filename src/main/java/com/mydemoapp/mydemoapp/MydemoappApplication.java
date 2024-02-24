@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 //@SpringBootApplication(scanBasePackages = {"com.mydemoapp.mydemoapp", "com.otherpackage.util"})
 @SpringBootApplication
 public class MydemoappApplication {
-
     // this bootstraps the entire application
     // spring boot searches recursively for packages to register them under com.mydemoapp.mydemoapp, anything outside this folder will not be added to the project
     // You can add packages manually by scanBasePackages
@@ -28,8 +27,23 @@ public class MydemoappApplication {
     @Bean
     public CommandLineRunner commandLineRunner (StudentDAO studentDAO) {
         return runner ->{
-            createStudent(studentDAO);
+//            createStudent(studentDAO);
+            createMultipleStudents(studentDAO);
         };
+    }
+
+    private void createMultipleStudents(StudentDAO studentDAO) {
+        System.out.println("Creating 3 student objects...");
+        Student tempStudent1 = new Student("Omar1","Mostafa1","omar1@email.com");
+        Student tempStudent2 = new Student("Omar2","Mostafa2","omar2@email.com");
+        Student tempStudent3 = new Student("Omar3","Mostafa3","omar3@email.com");
+
+
+        System.out.println("Saving students in DB...");
+        studentDAO.save(tempStudent1);
+        studentDAO.save(tempStudent2);
+        studentDAO.save(tempStudent3);
+
     }
 
     private void createStudent(StudentDAO studentDAO){
