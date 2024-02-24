@@ -28,8 +28,22 @@ public class MydemoappApplication {
     public CommandLineRunner commandLineRunner (StudentDAO studentDAO) {
         return runner ->{
 //            createStudent(studentDAO);
-            createMultipleStudents(studentDAO);
+//            createMultipleStudents(studentDAO);
+            readStudent(studentDAO);
         };
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        // create a student object
+        Student tempStudent1 = new Student("Potato","Mostafa1","Potato@email.com");
+        // save the student
+        studentDAO.save(tempStudent1);
+        // display id of the save student
+        System.out.println("The retried student id: "+tempStudent1.getId());
+        // retrieve student based on the id: primary key
+        Student myRetrievedStudent = studentDAO.findStudentById(tempStudent1.getId());
+        // display the student
+        System.out.println("Retried student object: "+myRetrievedStudent);
     }
 
     private void createMultipleStudents(StudentDAO studentDAO) {
