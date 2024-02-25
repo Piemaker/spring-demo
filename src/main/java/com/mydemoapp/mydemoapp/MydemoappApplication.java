@@ -35,8 +35,20 @@ public class MydemoappApplication {
 //            queryForStudents(studentDAO);
 //            saveDoe(studentDAO);
 //            findStudentByLastName(studentDAO);
-            updateStudent(studentDAO);
+//            updateStudent(studentDAO);
+//            deleteStudent(studentDAO);
+            deleteAllStudents(studentDAO);
         };
+    }
+
+    private void deleteAllStudents(StudentDAO studentDAO) {
+        int rowsDeleted = studentDAO.deleteAll();
+        System.out.println("Deleted row count = "+ rowsDeleted);
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        Integer id = 2;
+        studentDAO.removeStudent(id);
     }
 
     private void updateStudent(StudentDAO studentDAO) {
