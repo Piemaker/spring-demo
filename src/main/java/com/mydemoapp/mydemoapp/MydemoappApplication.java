@@ -35,7 +35,22 @@ public class MydemoappApplication {
 //            queryForStudents(studentDAO);
 //            saveDoe(studentDAO);
 //            findStudentByLastName(studentDAO);
+            updateStudent(studentDAO);
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        // retrieve the student based on id
+        int id = 1;
+        Student myStudent = studentDAO.findStudentById(id);
+        System.out.println("The student id: "+id);
+        System.out.println("The student : "+myStudent);
+
+        // change lastName
+        myStudent.setLastName("7amoraby!");
+        // update db
+        studentDAO.updateStudent(myStudent);
+        System.out.println("The student after update : "+myStudent);
     }
 
     private void saveDoe(StudentDAO studentDAO) {
