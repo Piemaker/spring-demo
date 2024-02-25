@@ -32,8 +32,22 @@ public class MydemoappApplication {
 //            createStudent(studentDAO);
 //            createMultipleStudents(studentDAO);
 //            readStudent(studentDAO);
-            queryForStudents(studentDAO);
+//            queryForStudents(studentDAO);
+//            saveDoe(studentDAO);
+//            findStudentByLastName(studentDAO);
         };
+    }
+
+    private void saveDoe(StudentDAO studentDAO) {
+        Student doe = new Student("John","Doe","johen@gmail.com");
+        studentDAO.save(doe);
+    }
+
+    private void findStudentByLastName(StudentDAO studentDAO) {
+        List<Student> students = studentDAO.findByLastname("Doe");
+        for(Student studentMatch : students){
+            System.out.println(studentMatch);
+        }
     }
 
     private void queryForStudents(StudentDAO studentDAO) {

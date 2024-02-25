@@ -14,7 +14,7 @@ public class StudentDAOImp implements StudentDAO {
     // define field for entity manager
     private EntityManager entityManager;
 
-// inject entity manager using constructor injection
+    // inject entity manager using constructor injection
     @Autowired
     public StudentDAOImp(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -31,13 +31,20 @@ public class StudentDAOImp implements StudentDAO {
 
     @Override
     public Student findStudentById(Integer id) {
-        return entityManager.find(Student.class,id);
+        return entityManager.find(Student.class, id);
     }
 
     @Override
     public List<Student> findAllStudents() {
         // this is not the name of the SQL table but the entity class name
-        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student order by id desc",Student.class);
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student order by id desc", Student.class);
+        return theQuery.getResultList();
+    }
+
+    @Override
+    public List<Student> findByLastname(String lastName) {
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName=:theName", Student.class);
+        theQuery.setParameter("theName",lastName);
         return theQuery.getResultList();
     }
 }
