@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 // app will break when files are moved to other folder giving this error
 // Parameter 0 of constructor in com.mydemoapp.mydemoapp.rest.DemoController required a bean of type 'com.mydemoapp.mydemoapp.common.Coach' that could not be found.
 //@SpringBootApplication(scanBasePackages = {"com.mydemoapp.mydemoapp", "com.otherpackage.util"})
@@ -29,8 +31,18 @@ public class MydemoappApplication {
         return runner ->{
 //            createStudent(studentDAO);
 //            createMultipleStudents(studentDAO);
-            readStudent(studentDAO);
+//            readStudent(studentDAO);
+            queryForStudents(studentDAO);
         };
+    }
+
+    private void queryForStudents(StudentDAO studentDAO) {
+        // get a list of students
+        List<Student> theStudents = studentDAO.findAllStudents();
+        // display a list of students
+        for(Student myStudent : theStudents){
+            System.out.println(myStudent);
+        }
     }
 
     private void readStudent(StudentDAO studentDAO) {

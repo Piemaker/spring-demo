@@ -2,8 +2,12 @@ package com.mydemoapp.mydemoapp.dao;
 
 import com.mydemoapp.mydemoapp.entity.Student;
 
+import java.util.List;
+
 public interface StudentDAO {
     void save(Student theStudent);
 
     Student findStudentById(Integer id);
+
+    List<Student> findAllStudents();
 }
